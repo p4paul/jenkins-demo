@@ -11,4 +11,4 @@ services:
     ports:
       - 4040:8080
     volumes:
-      - ./data:/usr/share/jenkins
+      - ./data:/var/jenkins_home
