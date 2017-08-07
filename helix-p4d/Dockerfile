@@ -27,13 +27,15 @@ RUN apt-get install -y helix-swarm-triggers
 # Configure Perforce
 EXPOSE 1666
 RUN mkdir /p4
+RUN chown -R perforce:perforce /p4
+
+# Add external files
+USER perforce
 ADD files/main.conf /etc/perforce/p4dctl.conf.d/
 ADD files/checkpoint.gz /p4/checkpoint.gz
 ADD files/depots.tar.gz /p4
-RUN chown -R perforce:perforce /p4
 
 # Restore Checkpoint and Depot files
-USER perforce
 RUN cd /p4; p4d -jr -z checkpoint.gz; p4d -xu
 
 # Start P4D service

@@ -1,12 +1,12 @@
 version: '3'
 services:
-  p4: 
+  p4.helix: 
     build: helix-p4d
     ports:
       - 4000:1666
     tty: true
     
-  jenkins: 
+  jenkins.helix: 
     build: jenkins
     ports:
       - 4040:8080
