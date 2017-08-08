@@ -16,7 +16,8 @@ services:
   gcon.helix:
     build: helix-gcon
     ports:
-      - 4022:22
-      - 4080:80
       - 4443:443
+      - 4080:80
+    depends_on:
+      - p4.helix
     tty: true
