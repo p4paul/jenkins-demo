@@ -17,6 +17,8 @@ ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
 COPY groovy/default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
 COPY groovy/default-credentials.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY groovy/default-tools.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY groovy/graphHybrid-job.groovy /usr/share/jenkins/ref/init.groovy.d/
 
 # Skip initial setup
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false

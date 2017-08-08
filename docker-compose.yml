@@ -12,3 +12,11 @@ services:
       - 4040:8080
     volumes:
       - ./data:/var/jenkins_home
+
+  gcon.helix:
+    build: helix-gcon
+    ports:
+      - 4022:22
+      - 4080:80
+      - 4443:443
+    tty: true

@@ -8,7 +8,7 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
-  apt-get install -y dnsutils curl git htop man unzip vim wget
+  apt-get install -y dnsutils curl git man unzip vim wget
 
 # Add Perforce Package Source
 RUN \
