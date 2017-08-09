@@ -26,4 +26,18 @@ RUN apt-get install -y helix-cli helix-git-connector
 # Configure
 EXPOSE 80 443 22
 
-ENTRYPOINT /opt/perforce/git-connector/bin/configure-git-connector.sh -n -m --ssh --https --forcehttps --p4port p4.helix:1666 --super admin --gcuserp4password Passw0rd && bash
+
+ENTRYPOINT \
+	/opt/perforce/git-connector/bin/configure-git-connector.sh \
+	  -n -m \
+	  --ssh --https --forcehttps \
+	  --p4port p4.helix:1666 \
+    --super admin --gcuserp4password Passw0rd && \
+    
+  export GCONN_CONFIG=/opt/perforce/git-connector/gconn.conf && \
+  
+  gconn --mirrorhooks add plugins/p4-plugin \
+    https://github.com/jenkinsci/p4-plugin.git && \
+  
+  bash
+
