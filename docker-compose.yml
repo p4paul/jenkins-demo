@@ -10,8 +10,6 @@ services:
     build: jenkins
     ports:
       - 4040:8080
-    volumes:
-      - ./data:/var/jenkins_home
 
   gcon.helix:
     build: helix-gcon

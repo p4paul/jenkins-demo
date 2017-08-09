@@ -1,0 +1,19 @@
+Stream:    //projects/p4-plugin.main
+
+Owner:    admin
+Name:    p4-plugin.main
+Parent:    none
+Type:    mainline
+
+Description:
+    Created by admin.
+
+Options:    allsubmit unlocked notoparent nofromparent mergedown
+
+Paths:
+    share ...
+    import p4java/... //p4java/main/p4-java/com.perforce.p4java/...
+    import p4-plugin/... //plugins/p4-plugin.git/...@master
+    import scm-api-plugin/... //plugins/scm-api-plugin.git/...@scm-api-2.0.2
+    import credentials-plugin/... //plugins/credentials-plugin.git/...@credentials-2.1.11
+
