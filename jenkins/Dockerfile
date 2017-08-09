@@ -23,6 +23,6 @@ COPY groovy/graphHybrid-job.groovy /usr/share/jenkins/ref/init.groovy.d/
 # Skip initial setup
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 
-#VOLUME /var/jenkins_home
+VOLUME /m2/repository
 
 WORKDIR $JENKINS_HOME

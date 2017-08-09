@@ -1,4 +1,4 @@
 *.gz
 
-data/
+m2.repo/
 test/
