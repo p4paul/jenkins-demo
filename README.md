@@ -8,4 +8,4 @@ You will need `docker` and `docker-compose` to run this demo.  You can get Docke
 2. Change into the cloned directory: `cd jenkins-demo`
 3. Bring up the instances: `docker-compose up`
 4. Wait for the machines to start...
-5. Open a browser at http://localhost:4080
+5. Open Jenkins in a browser at http://localhost:4080
