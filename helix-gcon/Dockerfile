@@ -41,7 +41,10 @@ ENTRYPOINT \
   gconn --mirrorhooks add plugins/p4-plugin https://github.com/jenkinsci/p4-plugin.git && \
   gconn --mirrorhooks add plugins/credentials-plugin https://github.com/jenkinsci/credentials-plugin.git && \
   gconn --mirrorhooks add plugins/scm-api-plugin https://github.com/jenkinsci/scm-api-plugin.git && \
-  
+  gconn --mirrorhooks add plugins/workflow-aggregator-plugin https://github.com/jenkinsci/workflow-aggregator-plugin.git && \
+  gconn --mirrorhooks add plugins/matrix-project-plugin https://github.com/jenkinsci/matrix-project-plugin.git && \
+  gconn --mirrorhooks add plugins/matrix-auth-plugin https://github.com/jenkinsci/matrix-auth-plugin.git && \
+   
   p4 stream -i < /home/perforce/p4-plugin.p4s && \
   
   bash

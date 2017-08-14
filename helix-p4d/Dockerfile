@@ -27,7 +27,7 @@ RUN apt-get install -y helix-swarm-triggers
 # Configure Perforce
 EXPOSE 1666
 RUN mkdir /p4
-RUN chown -R perforce:perforce /p4
+RUN chown perforce:perforce /p4
 
 # Add external files
 USER perforce
@@ -40,5 +40,7 @@ RUN cd /p4; p4d -jr -z checkpoint.gz; p4d -xu
 
 # Start P4D service
 USER root
+RUN chown -R perforce:perforce /p4
+
 ENTRYPOINT p4dctl start main && bash
 
