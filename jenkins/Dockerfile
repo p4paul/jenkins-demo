@@ -10,7 +10,7 @@ RUN \
   
 USER jenkins
 
-RUN /usr/local/bin/install-plugins.sh matrix-auth:1.7 p4:1.7.3
+RUN /usr/local/bin/install-plugins.sh matrix-auth:1.7 p4:1.7.4
 
 # Set Jenkins User/Password
 ENV JENKINS_USER admin
