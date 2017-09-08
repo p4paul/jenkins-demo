@@ -10,7 +10,7 @@ RUN \
   
 USER jenkins
 
-RUN /usr/local/bin/install-plugins.sh matrix-auth:1.7 p4:1.7.4
+RUN /usr/local/bin/install-plugins.sh matrix-auth:1.7 p4:1.7.5
 
 # Set Jenkins User/Password
 ENV JENKINS_USER admin
@@ -19,6 +19,7 @@ COPY groovy/default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
 COPY groovy/default-credentials.groovy /usr/share/jenkins/ref/init.groovy.d/
 COPY groovy/default-tools.groovy /usr/share/jenkins/ref/init.groovy.d/
 COPY groovy/graphHybrid-job.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY groovy/dockerTrigger-job.groovy /usr/share/jenkins/ref/init.groovy.d/
 
 # Skip initial setup
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false

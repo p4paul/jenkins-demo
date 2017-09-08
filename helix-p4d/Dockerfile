@@ -34,6 +34,7 @@ USER perforce
 ADD files/main.conf /etc/perforce/p4dctl.conf.d/
 ADD files/checkpoint.gz /p4/checkpoint.gz
 ADD files/depots.tar.gz /p4
+ADD files/jtrigger.sh /p4/
 
 # Restore Checkpoint and Depot files
 RUN cd /p4; p4d -jr -z checkpoint.gz; p4d -xu
@@ -41,6 +42,7 @@ RUN cd /p4; p4d -jr -z checkpoint.gz; p4d -xu
 # Start P4D service
 USER root
 RUN chown -R perforce:perforce /p4
+RUN chmod +x /p4/jtrigger.sh
 
 ENTRYPOINT p4dctl start main && bash
 

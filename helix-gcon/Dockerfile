@@ -28,6 +28,7 @@ EXPOSE 80 443 22
 ENV P4PORT p4.helix:1666
 ENV P4USER admin
 COPY p4-plugin.p4s /home/perforce/
+COPY triggers.p4s /home/perforce/
 
 ENTRYPOINT \
 	/opt/perforce/git-connector/bin/configure-git-connector.sh \
@@ -46,6 +47,8 @@ ENTRYPOINT \
   gconn --mirrorhooks add plugins/matrix-auth-plugin https://github.com/jenkinsci/matrix-auth-plugin.git && \
    
   p4 stream -i < /home/perforce/p4-plugin.p4s && \
+  
+  p4 triggers -i < /home/perforce/triggers.p4s && \
   
   bash
 

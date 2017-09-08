@@ -1,0 +1,2 @@
+Triggers:
+        helix4git graph-push-complete //plugins/... "/p4/jtrigger.sh %depotName% %repoName% %pusher%"
