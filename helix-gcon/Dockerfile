@@ -1,3 +1,7 @@
+# --------------------------------------------------------------------------------
+# Docker configuration for GCONN
+# --------------------------------------------------------------------------------
+
 FROM ubuntu:14.04
 
 MAINTAINER Paul Allen (pallen@perforce.com)
@@ -15,26 +19,29 @@ RUN \
   echo "deb http://package.perforce.com/apt/ubuntu trusty release" > /etc/apt/sources.list.d/perforce.list && \
   apt-get update
 
-# Create perforce user with UID to 1000 before p4d installation
-RUN useradd --home-dir /home/perforce --create-home --uid 1000 perforce
-RUN usermod -G sudo -a perforce
-RUN echo perforce:perforce | /usr/sbin/chpasswd
+# Create gconn user with UID to 1000
+RUN useradd --home-dir /home/gconn --create-home --uid 1000 gconn
+RUN usermod -G sudo -a gconn
+RUN echo gconn:gconn | /usr/sbin/chpasswd
 
 # Install p4 and Git Connector
 RUN apt-get install -y helix-cli helix-git-connector
 
 # Configure
 EXPOSE 80 443 22
-ENV P4PORT p4.helix:1666
-ENV P4USER admin
-COPY p4-plugin.p4s /home/perforce/
-COPY triggers.p4s /home/perforce/
+ENV P4PORT ${P4PORT}
+ENV P4USER ${P4USER}
+ENV P4PASSWD ${P4PASSWD}
+
+COPY p4-plugin.p4s /home/gconn/
+COPY triggers.p4s /home/gconn/
 
 ENTRYPOINT \
+
 	/opt/perforce/git-connector/bin/configure-git-connector.sh \
 	  -n -m \
 	  --ssh --https --forcehttps \
-	  --p4port p4.helix:1666 \
+	  --p4port ${P4PORT} \
     --super admin --gcuserp4password Passw0rd && \
     
   export GCONN_CONFIG=/opt/perforce/git-connector/gconn.conf && \
@@ -46,9 +53,9 @@ ENTRYPOINT \
   gconn --mirrorhooks add plugins/matrix-project-plugin https://github.com/jenkinsci/matrix-project-plugin.git && \
   gconn --mirrorhooks add plugins/matrix-auth-plugin https://github.com/jenkinsci/matrix-auth-plugin.git && \
    
-  p4 stream -i < /home/perforce/p4-plugin.p4s && \
+  p4 stream -i < /home/gconn/p4-plugin.p4s && \
   
-  p4 triggers -i < /home/perforce/triggers.p4s && \
+  p4 triggers -i < /home/gconn/triggers.p4s && \
   
   bash
 

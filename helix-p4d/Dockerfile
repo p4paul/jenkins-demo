@@ -1,3 +1,7 @@
+# --------------------------------------------------------------------------------
+# Docker configuration for P4D
+# --------------------------------------------------------------------------------
+
 FROM ubuntu:14.04
 
 MAINTAINER Paul Allen (pallen@perforce.com)
@@ -17,7 +21,7 @@ RUN \
   apt-get update
 
 # Create perforce user with UID to 1000 before p4d installation
-RUN useradd --home-dir /home/perforce --create-home --uid 1000 perforce
+RUN useradd --home-dir /p4 --create-home --uid 1000 perforce
 RUN echo perforce:perforce | /usr/sbin/chpasswd
 
 # Install Perforce Server
@@ -26,8 +30,9 @@ RUN apt-get install -y helix-swarm-triggers
 
 # Configure Perforce
 EXPOSE 1666
-RUN mkdir /p4
-RUN chown perforce:perforce /p4
+ENV P4PORT ${P4PORT}
+ENV P4USER ${P4USER}
+ENV P4PASSWD ${P4PASSWD}
 
 # Add external files
 USER perforce
@@ -44,5 +49,13 @@ USER root
 RUN chown -R perforce:perforce /p4
 RUN chmod +x /p4/jtrigger.sh
 
-ENTRYPOINT p4dctl start main && bash
+ENTRYPOINT \
+	p4dctl start main && \
+	
+	p4 passwd -P ${P4PASSWD} && \
+	
+	sleep 5 && \
+	echo "---- P4D is ready ----" && \
+	
+	bash
 
