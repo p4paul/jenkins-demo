@@ -38,6 +38,8 @@ COPY triggers.p4s /home/gconn/
 
 ENTRYPOINT \
 
+  until nc -zw 1 p4.helix 1666; do sleep 1; done && \
+  
 	/opt/perforce/git-connector/bin/configure-git-connector.sh \
 	  -n -m \
 	  --ssh --https --forcehttps \

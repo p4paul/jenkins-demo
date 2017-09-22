@@ -51,11 +51,8 @@ RUN chmod +x /p4/jtrigger.sh
 
 ENTRYPOINT \
 	p4dctl start main && \
+	until nc -zw 1 p4.helix 1666; do sleep 1; done && \
 	
 	p4 passwd -P ${P4PASSWD} && \
-	
-	sleep 5 && \
-	echo "---- P4D is ready ----" && \
-	
+		
 	bash
-

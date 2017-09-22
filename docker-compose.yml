@@ -2,6 +2,8 @@ version: '3'
 services:
   p4.helix: 
     build: helix-p4d
+    hostname: p4
+    domainname: helix
     env_file:
       - p4.env
     ports:
@@ -17,6 +19,8 @@ services:
 
   gcon.helix:
     build: helix-gcon
+    hostname: gcon
+    domainname: helix
     env_file:
       - p4.env
     ports:

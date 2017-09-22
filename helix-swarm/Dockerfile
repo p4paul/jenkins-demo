@@ -41,6 +41,8 @@ RUN a2dissite 000-default
 
 ENTRYPOINT \
 	
+	until nc -zw 1 p4.helix 1666; do sleep 1; done && \
+	
 	cron start && \
 	
 	/opt/perforce/swarm/sbin/configure-swarm.sh --non-interactive \
