@@ -41,7 +41,7 @@ RUN a2dissite 000-default
 
 ENTRYPOINT \
 	
-	until nc -zw 1 p4.helix 1666; do sleep 1; done && \
+	until nc -zw 1 p4.helix 1666; do sleep 1; done && sleep 1 && \
 	
 	cron start && \
 	

@@ -38,13 +38,16 @@ COPY triggers.p4s /home/gconn/
 
 ENTRYPOINT \
 
-  until nc -zw 1 p4.helix 1666; do sleep 1; done && \
+  until nc -zw 1 p4.helix 1666; do sleep 1; done && sleep 1 && \
+  
+  export P4PASSWD=password && \
   
 	/opt/perforce/git-connector/bin/configure-git-connector.sh \
 	  -n -m \
 	  --ssh --https --forcehttps \
 	  --p4port ${P4PORT} \
-    --super admin --gcuserp4password Passw0rd && \
+    --super ${P4USER} --superpassword ${P4PASSWD} \
+    --gcuserp4password Passw0rd && \
     
   export GCONN_CONFIG=/opt/perforce/git-connector/gconn.conf && \
   
