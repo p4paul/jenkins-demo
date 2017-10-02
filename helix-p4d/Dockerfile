@@ -33,6 +33,8 @@ EXPOSE 1666
 ENV P4PORT ${P4PORT}
 ENV P4USER ${P4USER}
 ENV P4PASSWD ${P4PASSWD}
+ENV SWARMHOST ${SWARMHOST}
+ENV SWARMTOKEN ${SWARMTOKEN}
 
 # Add external files
 USER perforce
@@ -40,6 +42,7 @@ ADD files/main.conf /etc/perforce/p4dctl.conf.d/
 ADD files/checkpoint.gz /p4/checkpoint.gz
 ADD files/depots.tar.gz /p4
 ADD files/jtrigger.sh /p4/
+ADD files/swarm-trigger.conf /opt/perforce/etc/swarm-trigger.conf
 
 # Restore Checkpoint and Depot files
 RUN cd /p4; p4d -jr -z checkpoint.gz; p4d -xu
@@ -50,7 +53,10 @@ RUN chown -R perforce:perforce /p4
 RUN chmod +x /p4/jtrigger.sh
 
 ENTRYPOINT \
-	p4dctl start main && \
+	export SWARMHOST=${SWARMHOST} && \
+	export SWARMTOKEN=${SWARMTOKEN} && \
+
+	p4dctl start main && \	
 	until nc -zw 1 p4.helix 1666; do sleep 1; done && \
 	
 	p4 passwd -P ${P4PASSWD} && \

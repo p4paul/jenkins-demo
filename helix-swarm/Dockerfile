@@ -27,15 +27,17 @@ RUN chown -R swarm:swarm /home/swarm
 RUN apt-get install -y helix-cli
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libreoffice helix-swarm
 
-# Configure Swarm
+# Configure Swarm Environment
 ENV P4PORT ${P4PORT}
 ENV P4USER ${P4USER}
 ENV P4PASSWD ${P4PASSWD}
 ENV SWARMHOST ${SWARMHOST}
 ENV SWARMUSER ${SWARMUSER}
 ENV SWARMPASSWD ${SWARMPASSWD}
+ENV SWARMTOKEN ${SWARMTOKEN}
 ENV MAILHOST ${MAILHOST}
 
+# Configure Apache
 RUN chown -R www-data:www-data /opt/perforce/swarm/data
 RUN a2dissite 000-default
 
@@ -44,6 +46,9 @@ ENTRYPOINT \
 	until nc -zw 1 p4.helix 1666; do sleep 1; done && sleep 1 && \
 	
 	cron start && \
+	
+	mkdir -p /opt/perforce/swarm/data/queue/tokens && \
+	touch /opt/perforce/swarm/data/queue/tokens/${SWARMTOKEN} && \
 	
 	/opt/perforce/swarm/sbin/configure-swarm.sh --non-interactive \
 		--p4port ${P4PORT} \

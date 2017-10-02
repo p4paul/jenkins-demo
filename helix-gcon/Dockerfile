@@ -40,7 +40,7 @@ ENTRYPOINT \
 
   until nc -zw 1 p4.helix 1666; do sleep 1; done && sleep 1 && \
   
-  export P4PASSWD=password && \
+  export P4PASSWD=${P4PASSWD} && \
   
 	/opt/perforce/git-connector/bin/configure-git-connector.sh \
 	  -n -m \
