@@ -45,6 +45,7 @@ ENTRYPOINT \
 	/opt/perforce/git-connector/bin/configure-git-connector.sh \
 	  -n -m \
 	  --ssh --https --forcehttps \
+	  --gconnhost gcon.helix \
 	  --p4port ${P4PORT} \
     --super ${P4USER} --superpassword ${P4PASSWD} \
     --gcuserp4password Passw0rd && \

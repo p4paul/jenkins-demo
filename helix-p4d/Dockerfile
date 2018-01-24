@@ -43,6 +43,8 @@ ADD files/checkpoint.gz /p4/checkpoint.gz
 ADD files/depots.tar.gz /p4
 ADD files/jtrigger.sh /p4/
 ADD files/swarm-trigger.conf /opt/perforce/etc/swarm-trigger.conf
+ADD files/hth-trigger.pl /p4/hth-trigger.pl
+ADD files/hth-trigger.conf /p4/hth-trigger.conf
 
 # Restore Checkpoint and Depot files
 RUN cd /p4; p4d -jr -z checkpoint.gz; p4d -xu
