@@ -1,0 +1,43 @@
+version: '3'
+services:
+  p4.helix: 
+    build: helix-p4d
+    hostname: p4
+    domainname: helix
+    env_file:
+      - p4.env
+    ports:
+      - 4000:1666
+    tty: true
+    
+  jenkins.helix: 
+    build: jenkins
+    ports:
+      - 4040:8080
+    volumes:
+      - ./m2.repo:/m2/repository
+
+  gcon.helix:
+    build: helix-gcon
+    hostname: gcon
+    domainname: helix
+    env_file:
+      - p4.env
+    ports:
+      - 4443:443
+      - 4080:80
+    depends_on:
+      - p4.helix
+    tty: true
+    
+  swarm.helix:
+    build: helix-swarm
+    hostname: swarm
+    domainname: helix
+    env_file:
+      - p4.env
+    ports:
+      - 5080:80
+    depends_on:
+      - gcon.helix
+    tty: true
