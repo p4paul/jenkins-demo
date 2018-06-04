@@ -17,12 +17,12 @@ export GCONN_CONFIG=/opt/perforce/git-connector/gconn.conf
 	--gcuserp4password Passw0rd 
 
 # Import sample GitHub repos...
-sudo -E -u gconn-auth gconn --mirrorhooks add plugins/p4-plugin https://github.com/jenkinsci/p4-plugin.git
-sudo -E -u gconn-auth gconn --mirrorhooks add plugins/credentials-plugin https://github.com/jenkinsci/credentials-plugin.git
-sudo -E -u gconn-auth gconn --mirrorhooks add plugins/scm-api-plugin https://github.com/jenkinsci/scm-api-plugin.git
-sudo -E -u gconn-auth gconn --mirrorhooks add plugins/workflow-aggregator-plugin https://github.com/jenkinsci/workflow-aggregator-plugin.git
-#sudo -E -u gconn-auth gconn --mirrorhooks add plugins/matrix-project-plugin https://github.com/jenkinsci/matrix-project-plugin.git
-#sudo -E -u gconn-auth gconn --mirrorhooks add plugins/matrix-auth-plugin https://github.com/jenkinsci/matrix-auth-plugin.git
+sudo -E -H -u gconn-auth gconn --mirrorhooks add plugins/p4-plugin https://github.com/jenkinsci/p4-plugin.git
+sudo -E -H -u gconn-auth gconn --mirrorhooks add plugins/credentials-plugin https://github.com/jenkinsci/credentials-plugin.git
+sudo -E -H -u gconn-auth gconn --mirrorhooks add plugins/scm-api-plugin https://github.com/jenkinsci/scm-api-plugin.git
+sudo -E -H -u gconn-auth gconn --mirrorhooks add plugins/workflow-aggregator-plugin https://github.com/jenkinsci/workflow-aggregator-plugin.git
+sudo -E -H -u gconn-auth gconn --mirrorhooks add plugins/matrix-project-plugin https://github.com/jenkinsci/matrix-project-plugin.git
+sudo -E -H -u gconn-auth gconn --mirrorhooks add plugins/matrix-auth-plugin https://github.com/jenkinsci/matrix-auth-plugin.git
 
 
 p4 stream -i < /home/gconn-auth/p4-plugin.p4s
