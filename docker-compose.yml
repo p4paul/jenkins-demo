@@ -13,7 +13,7 @@ services:
   jenkins.helix: 
     build: jenkins
     ports:
-      - 4040:8080
+      - 3080:8080
     volumes:
       - ./m2.repo:/m2/repository
     tty: false
