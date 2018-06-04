@@ -8,7 +8,13 @@ You will need `docker` and `docker-compose` to run this demo.  You can get Docke
 2. Change into the cloned directory: `cd jenkins-demo`
 3. Bring up the instances: `docker-compose up`
 4. Wait for the machines to start...
-5. Open Jenkins in a browser at http://localhost:4040
+
+## Services
+
+Jenkins: http://localhost:4080 
+Helix Swarm: http://localhost:5080  (admin:password)
+Helix TeamHub: http://localhost:6080  (admin:admin)
+Helix Core: P4PORT=localhost:4000  (admin:password)
 
 ## Usage
 
