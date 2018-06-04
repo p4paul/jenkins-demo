@@ -11,10 +11,10 @@ You will need `docker` and `docker-compose` to run this demo.  You can get Docke
 
 ## Services
 
-Jenkins: http://localhost:4080 
-Helix Swarm: http://localhost:5080  (admin:password)
-Helix TeamHub: http://localhost:6080  (admin:admin)
-Helix Core: P4PORT=localhost:4000  (admin:password)
+* Jenkins: http://localhost:3080 
+* Helix Swarm: http://localhost:5080  (admin:admin)
+* Helix TeamHub: http://localhost:6080  (admin:admin)
+* Helix Core: P4PORT=localhost:4000  (admin:admin)
 
 ## Usage
 
