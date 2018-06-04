@@ -1,5 +1,48 @@
 version: '3'
 services:
+  p4.helix: 
+    build: helix-p4d
+    hostname: p4
+    domainname: helix
+    env_file:
+      - p4.env
+    ports:
+      - 4000:1666
+    tty: true
+    
+  jenkins.helix: 
+    build: jenkins
+    ports:
+      - 4040:8080
+    volumes:
+      - ./m2.repo:/m2/repository
+    tty: false
+
+  gcon.helix:
+    build: helix-gcon
+    hostname: gcon
+    domainname: helix
+    env_file:
+      - p4.env
+    ports:
+      - 4443:443
+      - 4080:80
+    depends_on:
+      - p4.helix
+    tty: true
+    
+  swarm.helix:
+    build: helix-swarm
+    hostname: swarm
+    domainname: helix
+    env_file:
+      - p4.env
+    ports:
+      - 5080:80
+    depends_on:
+      - gcon.helix
+    tty: true
+    
   hth.helix: 
     build: helix-team-hub
     hostname: hth
@@ -7,10 +50,14 @@ services:
     env_file:
       - p4.env
     ports:
-      - 4080:80
+      - 6080:80
+      - 6443:443
+      - 6001:9001
     privileged: true
     cap_add:
       - SYS_ADMIN
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    tty: true
+    depends_on:
+      - gcon.helix
+    tty: false

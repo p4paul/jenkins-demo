@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# Docker configuration for HTH
+# Docker configuration for TeamHub
 # --------------------------------------------------------------------------------
 
 FROM ubuntu:16.04
@@ -29,16 +29,17 @@ RUN apt-get clean
 # Set the stop signal for graceful systemd stop
 STOPSIGNAL SIGRTMIN+3
 
-# No need for graphical.target here
-#RUN systemctl set-default multi-user.target
-
-VOLUME [ "/sys/fs/cgroup" ]
-
-EXPOSE 443 80 22
-
 ADD files/startup.sh /usr/bin/hth-startup
 RUN chmod +x /usr/bin/hth-startup
 
-#CMD ["/sbin/init"]
+RUN apt-get update && apt-get install -y supervisor
+RUN mkdir -p /var/log/supervisord
+ADD files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-ENTRYPOINT ["/sbin/init"]
+ADD files/license /var/opt/hth/shared/.license.pem
+
+VOLUME [ "/sys/fs/cgroup" ]
+
+EXPOSE 443 80 22 9001
+
+CMD ["/sbin/init"]
