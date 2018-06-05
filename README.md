@@ -1,6 +1,15 @@
 # Jenkins Helix4Git demo
 A simple example storing several Git repositories in a Helix server along with Perforce content.
 
+## Windows Users
+If running Windows there are a couple of extra steps that must be done before getting started on this.
+Firstly git must be configured to not automatically convert the line endings to Windows format when cloning the repositry.
+Secondly docker must also be set to automatically convert Windows paths.
+Within the coommand prompt this is being run within, run these commands:
+
+1. git config --global core.autocrlf true
+2. set COMPOSE_CONVERT_WINDOWS_PATHS=1
+
 ## Instructions
 You will need `docker` and `docker-compose` to run this demo.  You can get Docker here for [Mac](https://download.docker.com/mac/stable/Docker.dmg) or [Windows](https://download.docker.com/win/stable/InstallDocker.msi).
 
@@ -52,4 +61,3 @@ need to push git content into Perforce and run an initial build.
 4. Push repo `git push -u helix master`
 5. Build Jenkins job `docker-trigger-demo` (this should pass)
 6. Trigger Jenkins job by make a change to the local git repo, commit and push.
-
