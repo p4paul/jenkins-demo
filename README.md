@@ -7,8 +7,8 @@ Firstly git must be configured to not automatically convert the line endings to 
 Secondly docker must also be set to automatically convert Windows paths.
 Within the coommand prompt this is being run within, run these commands:
 
-1. git config --global core.autocrlf true
-2. set COMPOSE_CONVERT_WINDOWS_PATHS=1
+1. `git config --global core.autocrlf true`
+2. `set COMPOSE_CONVERT_WINDOWS_PATHS=1`
 
 ## Instructions
 You will need `docker` and `docker-compose` to run this demo.  You can get Docker here for [Mac](https://download.docker.com/mac/stable/Docker.dmg) or [Windows](https://download.docker.com/win/stable/InstallDocker.msi).
