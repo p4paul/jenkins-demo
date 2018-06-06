@@ -12,6 +12,8 @@ services:
     
   jenkins.helix: 
     build: jenkins
+    env_file:
+      - p4.env
     ports:
       - 3080:8080
     volumes:

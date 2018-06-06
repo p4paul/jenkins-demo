@@ -1,4 +1,4 @@
-FROM jenkins:2.60.3
+FROM jenkins/jenkins:2.107.3
 
 MAINTAINER Paul Allen (pallen@perforce.com)
 
@@ -10,7 +10,11 @@ RUN \
   
 USER jenkins
 
-RUN /usr/local/bin/install-plugins.sh p4:1.8.2
+RUN /usr/local/bin/install-plugins.sh \
+	mailer:1.21 \
+	matrix-auth:2.2 \
+	pipeline-model-definition:1.2.9 \
+	p4:1.8.10 
 
 # Set Jenkins User/Password
 ENV JENKINS_USER admin
