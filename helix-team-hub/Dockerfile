@@ -16,7 +16,7 @@ RUN \
   apt-get install -y libpam0g-dev libidn11 libidn11-dev locales tzdata && \
   apt-get install -y openssh-server	openssh-client
 	
-# Add Perforce Package Source
+# Add Perforce Package Source (http://pkg-ondemand.bnr.perforce.com/teamhub/candidate/apt/ubuntu)
 RUN \
   wget -qO - https://package.perforce.com/perforce.pubkey | sudo apt-key add - && \
   echo "deb http://package.perforce.com/apt/ubuntu xenial release" > /etc/apt/sources.list.d/perforce.list && \
@@ -32,11 +32,12 @@ STOPSIGNAL SIGRTMIN+3
 ADD files/startup.sh /usr/bin/hth-startup
 RUN chmod +x /usr/bin/hth-startup
 
+ADD files/license /var/opt/hth/shared/.license.pem
+ADD files/hth.json /var/opt/hth/shared/hth.json
+
 RUN apt-get update && apt-get install -y supervisor
 RUN mkdir -p /var/log/supervisord
 ADD files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-ADD files/license /var/opt/hth/shared/.license.pem
 
 VOLUME [ "/sys/fs/cgroup" ]
 
