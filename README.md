@@ -31,7 +31,7 @@ Login to Jenkins with user 'admin', password 'admin'.
 
 Git is running https on port 4443; for example, to clone use:
 
-  `git -c http.sslVerify=false clone https://admin:Passw0rd@localhost:4443/plugins/p4-plugin`
+  `git -c http.sslVerify=false clone https://admin:admin@localhost:4443/plugins/p4-plugin`
   
 (the `-c http.sslVerify=false` is needed as the demo does not use a Certificate)
 
