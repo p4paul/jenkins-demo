@@ -35,6 +35,7 @@
     "ldap_collaborators_base": null,
     "ldap_collaborators_filter": null,
     "jabber": "",
+    "ldap_interface_enabled": false,
     "ldap_password_enabled": false,
     "enable": true,
     "secret_key_base": "7bdf7ec5cfe68357c5d28eff70319dc8b0339b3500c576d3e5d7825ce00ad63e8c0a877c40cc2e127da98e889a1c8caa90bad276fe27d902eeb546a3d9891b87"
