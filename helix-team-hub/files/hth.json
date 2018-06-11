@@ -50,7 +50,7 @@
     "host": "gcon.helix",
     "user": "admin",
     "ssh_enabled": false,
-    "https_enabled": false,
+    "https_enabled": true,
     "ssh_port": 22,
     "https_port": 443
   },
