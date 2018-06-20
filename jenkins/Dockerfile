@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.107.3
+FROM jenkins/jenkins:2.121.1
 
 MAINTAINER Paul Allen (pallen@perforce.com)
 
