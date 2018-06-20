@@ -63,3 +63,19 @@ services:
     depends_on:
       - gcon.helix
     tty: false
+
+# OS X:
+#   host + ${HOSTNAME}
+#   socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
+#   docker exec -it jenkins-demo_dtg.helix_1 p4dtg-config
+  dtg.helix:
+    build: helix-dtg
+    hostname: dtg
+    domainname: helix
+    depends_on:
+      - p4.helix
+    env_file:
+      - p4.env
+    environment:
+      - DISPLAY=phooey.das.perforce.com:0
+    tty: true
