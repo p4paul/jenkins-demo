@@ -1,0 +1,110 @@
+{
+  "app": {
+    "email": "support@example.com",
+    "is_ssl": false,
+    "hostname": "localhost:6080",
+    "default_company": "hth"
+  },
+  "postfix": {
+    "relay_host": null,
+    "relay_port": 25,
+    "sasl_auth_enable": false,
+    "user_name": null,
+    "password": null,
+    "tls_auth_enable": false,
+    "enable": true
+  },
+  "backend": {
+    "auth_method": "helix",
+    "ldap_host": null,
+    "ldap_port": null,
+    "ldap_encryption": null,
+    "ldap_user": null,
+    "ldap_password": null,
+    "ldap_domain_base": null,
+    "ldap_filter": null,
+    "ldap_short_name": null,
+    "ldap_email": null,
+    "ldap_first_name": null,
+    "ldap_last_name": null,
+    "ldap_groups": null,
+    "ldap_source": "",
+    "ldap_groups_from_user": true,
+    "ldap_groups_base": null,
+    "ldap_collaborators_enabled": false,
+    "ldap_collaborators_base": null,
+    "ldap_collaborators_filter": null,
+    "jabber": "",
+    "ldap_interface_enabled": false,
+    "ldap_password_enabled": false,
+    "enable": true,
+    "secret_key_base": "7bdf7ec5cfe68357c5d28eff70319dc8b0339b3500c576d3e5d7825ce00ad63e8c0a877c40cc2e127da98e889a1c8caa90bad276fe27d902eeb546a3d9891b87"
+  },
+  "helix": {
+    "p4port": "p4.helix:1666",
+    "user": "admin",
+    "password": "admin",
+    "charset": "utf8"
+  },
+  "gconn": {
+    "host": "gcon.helix",
+    "user": "admin",
+    "ssh_enabled": false,
+    "https_enabled": true,
+    "ssh_port": 22,
+    "https_port": 443
+  },
+  "nginx": {
+    "server_names": "_",
+    "enable": true
+  },
+  "git": {
+    "enable": true
+  },
+  "mercurial": {
+    "enable": true
+  },
+  "opensshp": {
+    "enable": false
+  },
+  "subversion": {
+    "enable": true
+  },
+  "docker_registry": {
+    "enable": true,
+    "secret": "c22ad4d8d650353a6b13f58d29df89286304f943aba54a885c95bf1f37725823d92c2e3da90a7ab85acca912c96e8e19dfd30b2b16c0143a33510ee43d283db9"
+  },
+  "apache": {
+    "enable": true
+  },
+  "sqlite": {
+    "enable": true
+  },
+  "mongodb": {
+    "enable": true
+  },
+  "redis": {
+    "enable": true
+  },
+  "pilsner": {
+    "enable": true
+  },
+  "resque": {
+    "enable": true
+  },
+  "resque_scheduler": {
+    "enable": true
+  },
+  "sangria": {
+    "enable": true
+  },
+  "streamer": {
+    "enable": true
+  },
+  "maven": {
+    "enable": true
+  },
+  "puma": {
+    "enable": true
+  }
+}

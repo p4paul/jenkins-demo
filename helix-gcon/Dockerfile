@@ -19,10 +19,10 @@ RUN \
   echo "deb http://package.perforce.com/apt/ubuntu trusty release" > /etc/apt/sources.list.d/perforce.list && \
   apt-get update
 
-# Create gconn user with UID to 1000
-RUN useradd --home-dir /home/gconn --create-home --uid 1000 gconn
-RUN usermod -G sudo -a gconn
-RUN echo gconn:gconn | /usr/sbin/chpasswd
+# Create gconn-auth user with UID to 1000
+RUN useradd --home-dir /home/gconn-auth --create-home --uid 1000 gconn-auth
+RUN usermod -G sudo -a gconn-auth
+RUN echo gconn-auth:gconn-auth | /usr/sbin/chpasswd
 
 # Install p4 and Git Connector
 RUN apt-get install -y helix-cli helix-git-connector
@@ -33,35 +33,10 @@ ENV P4PORT ${P4PORT}
 ENV P4USER ${P4USER}
 ENV P4PASSWD ${P4PASSWD}
 
-COPY p4-plugin.p4s /home/gconn/
-COPY triggers.p4s /home/gconn/
+COPY files/p4-plugin.p4s /home/gconn-auth/
+COPY files/triggers.p4s /home/gconn-auth/
 
-ENTRYPOINT \
+COPY files/startup.sh /home/gconn-auth/
+RUN chmod +x /home/gconn-auth/startup.sh
 
-  until nc -zw 1 p4.helix 1666; do sleep 1; done && sleep 1 && \
-  
-  export P4PASSWD=${P4PASSWD} && \
-  
-	/opt/perforce/git-connector/bin/configure-git-connector.sh \
-	  -n -m \
-	  --ssh --https --forcehttps \
-	  --gconnhost gcon.helix \
-	  --p4port ${P4PORT} \
-    --super ${P4USER} --superpassword ${P4PASSWD} \
-    --gcuserp4password Passw0rd && \
-    
-  export GCONN_CONFIG=/opt/perforce/git-connector/gconn.conf && \
-  
-  gconn --mirrorhooks add plugins/p4-plugin https://github.com/jenkinsci/p4-plugin.git && \
-  gconn --mirrorhooks add plugins/credentials-plugin https://github.com/jenkinsci/credentials-plugin.git && \
-  gconn --mirrorhooks add plugins/scm-api-plugin https://github.com/jenkinsci/scm-api-plugin.git && \
-  gconn --mirrorhooks add plugins/workflow-aggregator-plugin https://github.com/jenkinsci/workflow-aggregator-plugin.git && \
-  gconn --mirrorhooks add plugins/matrix-project-plugin https://github.com/jenkinsci/matrix-project-plugin.git && \
-  gconn --mirrorhooks add plugins/matrix-auth-plugin https://github.com/jenkinsci/matrix-auth-plugin.git && \
-   
-  p4 stream -i < /home/gconn/p4-plugin.p4s && \
-  
-  p4 triggers -i < /home/gconn/triggers.p4s && \
-  
-  bash
-
+CMD ["/home/gconn-auth/startup.sh"]

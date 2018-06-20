@@ -1,0 +1,20 @@
+Stream:    //projects/p4-plugin.main
+
+Owner:    admin
+Name:    p4-plugin.main
+Parent:    none
+Type:    mainline
+
+Description:
+    Created by admin.
+
+Options:    allsubmit unlocked notoparent nofromparent mergedown
+
+Paths:
+    share ...
+    import p4-plugin/... //plugins/p4-plugin.git/...@p4-1.7.4
+    import scm-api-plugin/... //plugins/scm-api-plugin.git/...@scm-api-2.0.2
+    import credentials-plugin/... //plugins/credentials-plugin.git/...@credentials-2.1.11
+    import workflow-aggregator-plugin/... //plugins/workflow-aggregator-plugin.git/...@workflow-aggregator-2.5
+    import matrix-project-plugin/... //plugins/matrix-project-plugin.git/...@matrix-project-1.2
+    import matrix-auth-plugin/... //plugins/matrix-auth-plugin.git/...@matrix-auth-1.2

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+        version="1"
+        updated="2018/06/19 16:17:59 UTC">
+    <DataSource
+            type="SCM"
+            plugin="Perforce Jobs"
+            nickname="p4"
+            server="p4.helix:1666"
+            user="admin"
+            epassword="616433357B58194C4A0546024644441A18511C5D080E4102460200005E5C11
+558194C4A0546024644441A18511C5D080E4102460200005E5C1558194C4A054602"
+            module="Jobs"
+            moddate_field="Date"
+            moduser_field="ModBy">
+        <Attributes>
+            <DataAttr
+                    name="unicode"
+                    value="y" />
+        </Attributes>
+    </DataSource>
+</DTGConfiguration>

@@ -23,9 +23,9 @@ RUN usermod -G sudo -a swarm
 RUN echo swarm:swarm | /usr/sbin/chpasswd
 RUN chown -R swarm:swarm /home/swarm
 
-# Install Perforce Client and Swarm
+# Install Perforce Client and Swarm (libreoffice)
 RUN apt-get install -y helix-cli
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libreoffice helix-swarm
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y helix-swarm
 
 # Configure Swarm Environment
 ENV P4PORT ${P4PORT}

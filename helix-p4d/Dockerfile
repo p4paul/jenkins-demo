@@ -57,10 +57,7 @@ RUN chmod +x /p4/jtrigger.sh
 ENTRYPOINT \
 	export SWARMHOST=${SWARMHOST} && \
 	export SWARMTOKEN=${SWARMTOKEN} && \
-
 	p4dctl start main && \	
 	until nc -zw 1 p4.helix 1666; do sleep 1; done && \
-	
 	p4 passwd -P ${P4PASSWD} && \
-		
 	bash

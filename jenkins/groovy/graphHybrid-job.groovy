@@ -15,7 +15,7 @@ String credential = 'p41666'
 String client = 'jenkins-${NODE_NAME}-${JOB_NAME}-script';
 String view = '//projects/p4-plugin.main/Jenkinsfile //' + client + '/Jenkinsfile';
 WorkspaceSpec spec = new WorkspaceSpec(false, false, false, false, false, false, null, "LOCAL", view);
-ManualWorkspaceImpl workspace = new ManualWorkspaceImpl('none', true, client, spec);
+ManualWorkspaceImpl workspace = new ManualWorkspaceImpl('utf8', true, client, spec);
 
 Populate populate = new AutoCleanImpl();
 PerforceScm scm = new PerforceScm(credential, workspace, populate);

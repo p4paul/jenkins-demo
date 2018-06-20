@@ -15,7 +15,7 @@ if(!j.getJobNames().contains(jobName)) {
 	WorkflowJob job = j.createProject(WorkflowJob.class, jobName);
 	job.setDefinition(new CpsFlowDefinition(""
 			+ "node () {\n" +
-			"    p4sync charset: 'none', \n" +
+			"    p4sync charset: 'utf8', \n" +
 			"      credential: '" + credential + "', \n" +
 			"      format: '" + client + "', \n" +
 			"      populate: graphClean(quiet: true), \n" +
